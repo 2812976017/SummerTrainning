@@ -55,7 +55,7 @@ ROOT_URLCONF = 'SummerTrainning.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'static')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'SummerTrainning.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    #'NAME': 'webdata_dangdang_jingdong',
+    'NAME': 'farmProduct_database',
     'USER':'root',
     'PASSWORD':'root',
     'HOST':'localhost',
