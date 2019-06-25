@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'SummerTrainning.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    #'NAME': 'webdata_dangdang_jingdong',
+    'NAME': 'stu',
     'USER':'root',
     'PASSWORD':'root',
     'HOST':'localhost',

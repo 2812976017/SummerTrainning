@@ -15,10 +15,10 @@ urlpatterns = [
     re_path(r'^sale_sum_per_month/*$',          views.sale_sum_per_month,           name='sale_sum_per_month'),
 
     #后续迭代
-    re_path(r'^login/*$',                       views.login,                                    name='login'),
-    re_path(r'^register/*$',                    views.register,                                 name='register'),
-    re_path(r'^pricepredict/*$',                views.pricepredict,                             name='pricepredict'),
-    re_path(r'^productpredict/*$',              views.productpredict,                           name='productpredict'),
+    re_path(r'^login/*$',                       views.login,                        name='login'),
+    re_path(r'^register/*$',                    views.register,                     name='register'),
+    re_path(r'^pricepredict/*$',                views.pricepredict,                 name='pricepredict'),
+    re_path(r'^productpredict/*$',              views.productpredict,               name='productpredict'),
 
 
 
