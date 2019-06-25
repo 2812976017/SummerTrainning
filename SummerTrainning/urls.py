@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import re_path,include,path
-from FarmProduct import views
+# from FarmProduct import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^login/*$', views.login, name='login'),  # access: all
+
+    path('', include('FarmProduct.urls')),
+
 ]
