@@ -32,6 +32,7 @@ class Class(models.Model):
         db_table = 'class'
 
 
+
 class Gdp(models.Model):
     gdp_id = models.CharField(primary_key=True, max_length=20)
     gdp_date = models.CharField(max_length=45)
