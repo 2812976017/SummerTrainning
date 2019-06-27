@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'SummerTrainning.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'stu',
+    'NAME': 'product',
     'USER':'root',
-    'PASSWORD':'root',
+    'PASSWORD':'123456',
     'HOST':'localhost',
     'PORT':'3306',
     }
