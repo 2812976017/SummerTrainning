@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from . import models
+#from django.db import models
 
 # Create your views here.
 
@@ -10,15 +12,15 @@ from django.http import JsonResponse
 
 #2017-2019生产总值
 def total(request):
-    total = 0
+    total = models.Gdp.objects.get(gdp_pid=1).gdp_mount
     return JsonResponse({"total": total})
 
 #2017-2019每月总产量
 def per_month():
-    x = 10
+    x = models.Gdp.objests.all().count()-1
     a = []
     for i in range(0, x):
-        a[i] = {"month": 0}
+        a[i] = {models.Gdp.objects.get(gdp_id=(i+2)).gdp_date: models.Gdp.objects.get(gdp_id=(i+2)).gdp_mount}
     return JsonResponse({"per_month": a})
 
 #每个省2017-2019总产量
