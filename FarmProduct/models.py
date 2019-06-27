@@ -43,7 +43,6 @@ class Gdp(models.Model):
         managed = False
         db_table = 'gdp'
 
-
 class Price(models.Model):
     pri_id = models.CharField(primary_key=True, max_length=20)
     pri_place = models.CharField(max_length=45)
