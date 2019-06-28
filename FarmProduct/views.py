@@ -12,7 +12,7 @@ from . import models
 
 #2017-2019生产总值
 def total(request):
-    total = models.Gdp.objects.get(gdp_pid=1).gdp_mount
+    total = models.Gdp.objects.get(gdp_id=1).gdp_mount
     return JsonResponse({"total": total})
 
 #2017-2019每月总产量

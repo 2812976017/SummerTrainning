@@ -20,29 +20,6 @@ class Action(models.Model):
         db_table = 'action'
 
 
-class Class(models.Model):
-    cla_id = models.CharField(primary_key=True, max_length=20)
-    cla_date = models.CharField(max_length=45)
-    cla_kind = models.CharField(max_length=45)
-    cla_yeild = models.CharField(max_length=45)
-    cla_per = models.CharField(max_length=45)
-
-    class Meta:
-        managed = False
-        db_table = 'class'
-
-
-
-class Gdp(models.Model):
-    gdp_id = models.CharField(primary_key=True, max_length=20)
-    gdp_date = models.CharField(max_length=45)
-    gdp_mount = models.CharField(max_length=45)
-    gdp_all = models.CharField(max_length=45, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'gdp'
-
 class Price(models.Model):
     pri_id = models.CharField(primary_key=True, max_length=20)
     pri_place = models.CharField(max_length=45)
@@ -65,6 +42,7 @@ class Products(models.Model):
     pro_des = models.CharField(max_length=45)
     pro_img = models.CharField(max_length=45, blank=True, null=True)
     pro_store = models.ForeignKey('User', models.DO_NOTHING, db_column='pro_store')
+    pro_state = models.IntegerField()
 
     class Meta:
         managed = False
@@ -77,6 +55,7 @@ class Purchase(models.Model):
     pur_product = models.ForeignKey(Products, models.DO_NOTHING, db_column='pur_product')
     pur_quantity = models.CharField(max_length=45)
     pur_date = models.CharField(max_length=45)
+    pur_price = models.DecimalField(max_digits=5, decimal_places=1)
 
     class Meta:
         managed = False
@@ -96,8 +75,8 @@ class User(models.Model):
 
 class Weather(models.Model):
     wea_id = models.CharField(primary_key=True, max_length=20)
-    wea_temp_max = models.CharField(max_length=45)
-    wea_temp_min = models.CharField(max_length=45)
+    wea_temp_max = models.IntegerField()
+    wea_temp_min = models.IntegerField()
     wea_state = models.IntegerField()
     wea_place = models.CharField(max_length=45)
     wea_date = models.CharField(max_length=45)
