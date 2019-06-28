@@ -7,7 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class Action(models.Model):
     act_id = models.CharField(primary_key=True, max_length=20)
     act_consumer = models.ForeignKey('User', models.DO_NOTHING, db_column='act_consumer')
@@ -19,6 +18,30 @@ class Action(models.Model):
         managed = False
         db_table = 'action'
 
+
+class Class(models.Model):
+    cla_id = models.CharField(primary_key=True, max_length=20)
+    cla_date = models.CharField(max_length=45)
+    cla_kind = models.CharField(max_length=45)
+    cla_yeild = models.CharField(max_length=45)
+    cla_per = models.CharField(max_length=45)
+
+    class Meta:
+        managed = False
+        db_table = 'class'
+
+
+
+class Gdp(models.Model):
+
+    gdp_id = models.CharField(primary_key=True, max_length=20)
+    gdp_date = models.CharField(max_length=45)
+    gdp_mount = models.CharField(max_length=45)
+    gdp_all = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gdp'
 
 class Price(models.Model):
     pri_id = models.CharField(primary_key=True, max_length=20)

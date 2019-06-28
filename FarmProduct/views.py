@@ -6,9 +6,82 @@ from . import models
 
 # Create your views here.
 
-'''第一次迭代，数据可视化
-   6.25
-'''
+#注册
+def register(request):
+    username    = request.POST.get("user_name")
+    userpwd     = request.POST.get("user_pwd")
+    usertype    = request.POST.get("user_type")                       #三种类型用数字表示，1为用户，2为商家，3为政府
+    useraddress = request.POST.get("user_address")
+    if models.User.objects.filter(user_name=username).exists():       #如果用户已经存在，再进行注册时会出错
+        return JsonResponse({"status": False,
+                             "message": "user already exists"})
+    else:
+        models.User.objects.create(user_name=username, user_pwd=userpwd, user_type=usertype, user_address=useraddress)
+        return JsonResponse({"status": True,
+                             "message": "registration success"})
+#登录
+def login(request):
+    username = request.POST.get("user_name")
+    userpwd = request.POST.get("user_pwd")
+    if models.User.objects.filter(user_name=username).filter(user_pwd=userpwd).exists():
+        return JsonResponse({"status": True,
+                             "message": "login success"})
+    else:
+        if models.User.objects.filter(user_name=username).exists():
+            return JsonResponse({"status": False,
+                                 "message": "password not correct"})
+        else:
+            return JsonResponse({"status": False,
+                                 "message": "username not exists, register first please"})
+
+#按产品类别浏览表
+def browse_by_protype(request):
+    protype = request.POST.get("pro_type")
+    proset = models.Products.objects.filter(pro_type=protype)
+    x = proset.count()-1
+    a = []
+    for i in range(0, x):
+        a[i] = {"pro_name": proset[i].pro_name,
+                "pro_id": proset[i].pro_id,
+                "pro_price": proset[i].pro_id,
+                "pro_image": proset[i].pro_img}
+    return JsonResponse({"products": a})
+
+#查看产品
+def check_product(request):
+    proid = request.POST.get("pro_id")
+    pro = models.Products.objects.filter(pro_id=proid)
+    return JsonResponse({"pro_name": pro.pro_name,
+                         "pro_price": pro.pro_price,
+                         "pro_des": pro.pro_des,
+                         "pro_store": pro.pro_store})
+
+#购买
+def purchase(request):
+    purproduct  = request.POST.get("pur_product")
+    purquantity = request.POST.get("pur_quantity")
+    purdate     = request.POST.get("pur_date")
+    purconsumer = request.POST.get("pur_consumer")
+    purprice    = request.POST.get("pur_price")
+    models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=purconsumer, pur_price=purprice)
+
+#查找
+def search(request):
+    keyword = request.POST.get("key_word")
+    proset = models.Products.objects.filter(pro_name__contains=keyword)
+    x = proset.count()
+    if x == 0:
+        return JsonResponse({"status": False,
+                             "message": "nothing found"})
+    else:
+        x -= 1
+        a = []
+        for i in range(0, x):
+            a[i] = {"pro_name": proset[i].pro_name,
+                    "pro_id": proset[i].pro_id,
+                    "pro_price": proset[i].pro_id,
+                    "pro_image": proset[i].pro_img}
+        return JsonResponse({"products": a})
 
 
 #2017-2019生产总值
@@ -81,21 +154,6 @@ def sale_sum_per_month(request):
 
 '''后续迭代'''
 
-#登录
-def login(request):
-    user_name = request.POST.get("user_name")
-    pass_word = request.POST.get("pass_word")
-    return JsonResponse({"status": "status",
-                         "message": "login success",
-                         "usertype": "usertype"})
-
-#注册
-def register(request):
-    user_name = request.POST.get("user_name")
-    pass_word = request.POST.get("pass_word")
-    user_type = request.POST.get("user_type")
-    return JsonResponse({"status": "status",
-                         "message": "register success"})
 
 #价格预测
 def pricepredict(request):
