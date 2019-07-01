@@ -6,6 +6,10 @@ from . import models
 
 # Create your views here.
 
+#测试
+def test(request):
+    return HttpResponse("OK!")
+
 #注册
 def register(request):
     username    = request.POST.get("user_name")
@@ -37,7 +41,7 @@ def login(request):
 #按产品类别浏览表
 def browse_by_protype(request):
     protype = request.POST.get("pro_type")
-    proset = models.Products.objects.filter(pro_type=protype)
+    proset = models.Products.objects.filter(pro_type=protype).filter(pro_state=1)
     x = proset.count()-1
     a = []
     for i in range(0, x):
@@ -54,21 +58,23 @@ def check_product(request):
     return JsonResponse({"pro_name": pro.pro_name,
                          "pro_price": pro.pro_price,
                          "pro_des": pro.pro_des,
-                         "pro_store": pro.pro_store})
+                         "pro_store": pro.pro_store,
+                         "pro_img": pro.pro_img})
 
 #购买
 def purchase(request):
     purproduct  = request.POST.get("pur_product")
     purquantity = request.POST.get("pur_quantity")
     purdate     = request.POST.get("pur_date")
-    purconsumer = request.POST.get("pur_consumer")
+    pursumer = request.POST.get("pur_consumer")
     purprice    = request.POST.get("pur_price")
-    models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=purconsumer, pur_price=purprice)
+    models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=pursumer, pur_price=purprice)
+    return JsonResponse({"status": "purchase success"})
 
 #查找
 def search(request):
     keyword = request.POST.get("key_word")
-    proset = models.Products.objects.filter(pro_name__contains=keyword)
+    proset = models.Products.objects.filter(pro_name__contains=keyword).filter(pro_state=1)
     x = proset.count()
     if x == 0:
         return JsonResponse({"status": False,
@@ -82,6 +88,41 @@ def search(request):
                     "pro_price": proset[i].pro_id,
                     "pro_image": proset[i].pro_img}
         return JsonResponse({"products": a})
+
+#商户上架产品
+def new_arrival(request):
+    pname = request.POST.get("pro_name")
+    pimg = request.POST.get("pro_img")
+    pdes = request.POST.get("pro_des")
+    ptype = request.POST.get("pro_type")
+    pprice = request.POST.get("pro_price")
+    porigin = request.POST.get("pro_origin")
+    userid = request.POST.get("user_id")
+
+#商户下架商品
+def off_shelve(request):
+    userid = request.POST.get("user_id")
+    pname = request.POST.get("pro_name")
+    models.Products.objects.filter(pro_name=pname).filter(pro_store=pname).update(pro_state=0)
+    return JsonResponse({"status": True})
+
+#按商户浏览
+def browse_by_prostore(request):
+    userid = request.POST.get("user_id")
+    proset = models.Products.objects.filter(pro_store=userid)
+    x = proset.count()-1
+    a = []
+    for i in range(0,x):
+        a[i] = {"pro_name": proset[i].pro_name,
+                "pro_id": proset[i].pro_id,
+                "pro_price": proset[i].pro_id,
+                "pro_image": proset[i].pro_img}
+    return JsonResponse({"products": a})
+
+
+
+
+
 
 
 #2017-2019生产总值

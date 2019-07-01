@@ -8,7 +8,13 @@ urlpatterns = [
     re_path(r'^browse_by_protype/*$',           views.browse_by_protype,            name='browse_by_protype'),
     re_path(r'^check_product/*$',               views.check_product,                name='check_product'),
     re_path(r'^purchase/*$',                    views.purchase,                     name='purchase'),
-    re_path(r'^search/*$',                      views.search,                         name='search'),
+    re_path(r'^search/*$',                      views.search,                       name='search'),
+    re_path(r'^new_arrival/*$',                 views.new_arrival,                  name='new_arrival'),
+    re_path(r'^off_shelve/*$',                  views.off_shelve,                   name='off_shelve'),
+    re_path(r'^browse_by_prostore/*$',          views.browse_by_prostore,           name='browse_by_prostore'),
+
+    re_path(r'^test/*$',                        views.test,                         name='test'),
+
 
     # #第一次迭代
     # re_path(r'^total/*$',                       views.total,                        name='total'),
