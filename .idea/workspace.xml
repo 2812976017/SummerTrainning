@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d304027-9516-4eaf-86ef-3213691d6d5d" name="Default" comment="models初步完成">
+    <list default="true" id="7d304027-9516-4eaf-86ef-3213691d6d5d" name="Default" comment="增加yield方法测试数据库与接口连接">
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmProduct/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FarmProduct/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmProduct/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/FarmProduct/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmProduct/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/FarmProduct/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FarmProduct/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="2489">
+              <caret line="131" selection-start-line="131" selection-end-line="131" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -30,11 +29,52 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="db://5f30f45c-c90e-4626-b384-474d212eb157/objects/schemas/product/tables/user">
+          <provider selected="true" editor-type-id="1.DATA">
+            <state row-count="2" readonly="false">
+              <columns>
+                <column name="user_name" position="0" visible="true" />
+                <column name="user_pwd" position="1" visible="true" />
+                <column name="user_type" position="2" visible="true" />
+                <column name="user_address" position="3" visible="true" />
+              </columns>
+              <sorting>
+                <column name="user_name" index="1" direction="ASCENDING" />
+              </sorting>
+              <content-types />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="db://5f30f45c-c90e-4626-b384-474d212eb157/objects/schemas/product/tables/products">
+          <provider selected="true" editor-type-id="1.DATA">
+            <state row-count="3" readonly="false">
+              <columns>
+                <column name="pro_id" position="0" visible="true" />
+                <column name="pro_name" position="1" visible="true" />
+                <column name="pro_type" position="2" visible="true" />
+                <column name="pro_price" position="3" visible="true" />
+                <column name="pro_origin" position="4" visible="true" />
+                <column name="pro_des" position="5" visible="true" />
+                <column name="pro_img" position="6" visible="true" />
+                <column name="pro_store" position="7" visible="true" />
+                <column name="pro_state" position="8" visible="true" />
+              </columns>
+              <sorting>
+                <column name="pro_price" index="1" direction="DESCENDING" />
+              </sorting>
+              <content-types />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SummerTrainning/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="51" column="61" lean-forward="true" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+            <state relative-caret-position="465">
+              <caret line="51" column="61" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -47,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FarmProduct/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="722">
+              <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
               <folding>
                 <element signature="n#!!doc" />
               </folding>
@@ -59,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FarmProduct/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+            <state relative-caret-position="190">
+              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -215,7 +255,8 @@
       <workItem from="1561939814397" duration="3500000" />
       <workItem from="1561946429784" duration="393000" />
       <workItem from="1561971999499" duration="721000" />
-      <workItem from="1562026748738" duration="820000" />
+      <workItem from="1562026748738" duration="3950000" />
+      <workItem from="1562031791047" duration="261000" />
     </task>
     <task id="LOCAL-00001" summary="SummerTrainnig下urls.py更改：将其他url请求导向FarmProduct下的urls.py&#10;view.py定义了一些方法，返回值已确定">
       <created>1561453869489</created>
@@ -252,20 +293,33 @@
       <option name="project" value="LOCAL" />
       <updated>1562026816801</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="增加yield方法测试数据库与接口连接">
+      <created>1562027714045</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1562027714045</updated>
+    </task>
+    <task id="LOCAL-00007" summary="增加yield方法测试数据库与接口连接">
+      <created>1562027792910</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1562027792910</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22481000" />
+    <option name="totallyTimeSpent" value="25678000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.12399464" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="DB Browser" order="3" visible="true" weight="0.32908848" />
+      <window_info active="true" id="DB Browser" order="3" visible="true" weight="0.32908848" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32903227" />
@@ -275,7 +329,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.21671388" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.21671388" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32903227" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3286119" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
@@ -319,7 +373,8 @@
     <MESSAGE value="models.py初步完成" />
     <MESSAGE value="'models.py初步完成'" />
     <MESSAGE value="models初步完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="models初步完成" />
+    <MESSAGE value="增加yield方法测试数据库与接口连接" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加yield方法测试数据库与接口连接" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/FarmProduct/apps.py">
@@ -397,22 +452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="db://5f30f45c-c90e-4626-b384-474d212eb157/objects/schemas/product/tables/user">
-      <provider selected="true" editor-type-id="1.DATA">
-        <state row-count="1" readonly="false">
-          <columns>
-            <column name="user_name" position="0" visible="true" />
-            <column name="user_pwd" position="1" visible="true" />
-            <column name="user_type" position="2" visible="true" />
-            <column name="user_address" position="3" visible="true" />
-          </columns>
-          <sorting>
-            <column name="user_name" index="1" direction="DESCENDING" />
-          </sorting>
-          <content-types />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FarmProduct/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -435,43 +474,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FarmProduct/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FarmProduct/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="n#!!doc" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FarmProduct/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+        <state relative-caret-position="190">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/FarmProduct/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="db://5f30f45c-c90e-4626-b384-474d212eb157/objects/schemas/product/tables/user">
+      <provider selected="true" editor-type-id="1.DATA">
+        <state row-count="2" readonly="false">
+          <columns>
+            <column name="user_name" position="0" visible="true" />
+            <column name="user_pwd" position="1" visible="true" />
+            <column name="user_type" position="2" visible="true" />
+            <column name="user_address" position="3" visible="true" />
+          </columns>
+          <sorting>
+            <column name="user_name" index="1" direction="ASCENDING" />
+          </sorting>
+          <content-types />
+        </state>
+      </provider>
+    </entry>
+    <entry file="db://5f30f45c-c90e-4626-b384-474d212eb157/objects/schemas/product/tables/products">
+      <provider selected="true" editor-type-id="1.DATA">
+        <state row-count="3" readonly="false">
+          <columns>
+            <column name="pro_id" position="0" visible="true" />
+            <column name="pro_name" position="1" visible="true" />
+            <column name="pro_type" position="2" visible="true" />
+            <column name="pro_price" position="3" visible="true" />
+            <column name="pro_origin" position="4" visible="true" />
+            <column name="pro_des" position="5" visible="true" />
+            <column name="pro_img" position="6" visible="true" />
+            <column name="pro_store" position="7" visible="true" />
+            <column name="pro_state" position="8" visible="true" />
+          </columns>
+          <sorting>
+            <column name="pro_price" index="1" direction="DESCENDING" />
+          </sorting>
+          <content-types />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SummerTrainning/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="51" column="61" lean-forward="true" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+        <state relative-caret-position="465">
+          <caret line="51" column="61" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FarmProduct/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2489">
+          <caret line="131" selection-start-line="131" selection-end-line="131" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

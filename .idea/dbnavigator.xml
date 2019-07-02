@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="5f30f45c-c90e-4626-b384-474d212eb157">
-        <schema name="product" object-types="view, column, function, dataset trigger, constraint, procedure, index, table" />
+        <schema name="product" object-types="dataset trigger, function, view, column, procedure, constraint, index, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -35,7 +35,10 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="5f30f45c-c90e-4626-b384-474d212eb157" object-ref="schemas/product/tables/user" />
+      <object connection-id="5f30f45c-c90e-4626-b384-474d212eb157" object-ref="schemas/product/tables/products" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="5f30f45c-c90e-4626-b384-474d212eb157" />
@@ -51,7 +54,8 @@
         <condition column="gdp_mount" operator="=" value="1" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.user" active-filter-id="18cfefdc-c3dc-4cac-bd61-a8261e37d537">
+    <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.products" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.user" active-filter-id="EMPTY_FILTER">
       <filter id="18cfefdc-c3dc-4cac-bd61-a8261e37d537" name="123 &amp; 山东 &amp; 123 &amp; 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="user_name" operator="=" value="123" active="true" />
         <condition column="user_address" operator="=" value="山东" active="true" />
