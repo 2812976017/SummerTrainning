@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import json
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import models
@@ -78,20 +79,33 @@ def purchase(request):
 #查找
 def search(request):
     keyword = request.POST.get("key_word")
+    print(keyword)
     proset = models.Products.objects.filter(pro_name__contains=keyword).filter(pro_state=1)
+    print(proset[0].pro_name)
+    print(proset)
     x = proset.count()
+    print(x)
     if x == 0:
         return JsonResponse({"status": False,
                              "message": "nothing found"})
     else:
-        x -= 1
-        a = []
+        a = [0]*x
+        print(len(a))
         for i in range(0, x):
-            a[i] = {"pro_name": proset[i].pro_name,
-                    "pro_id": proset[i].pro_id,
-                    "pro_price": proset[i].pro_id,
-                    "pro_image": proset[i].pro_img}
-        return JsonResponse({"products": a})
+            temp = [0, 1, 2, 3]
+            print(i)
+            temp[0] = proset[i].pro_name
+            print(temp[0])
+            temp[1] = proset[i].pro_id
+            print(temp[1])
+            temp[2] = proset[i].pro_price
+            print(temp[2])
+            temp[3] = proset[i].pro_img
+            a[i]=temp
+            print(a[i])
+        print(a)
+        return JsonResponse({"status": True,
+                             "products": a})
 
 #商户上架产品
 def new_arrival(request):
@@ -111,7 +125,7 @@ def new_arrival(request):
 def off_shelf(request):
     userid = request.POST.get("user_id")
     pname = request.POST.get("pro_name")
-    models.Products.objects.filter(pro_name=pname).filter(pro_store=pname).update(pro_state=0)
+    models.Products.objects.filter(pro_name=pname).filter(pro_store=userid).update(pro_state=0)
     return JsonResponse({"status": True,
                          "message": "product is off shelf"})
 
