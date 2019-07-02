@@ -62,6 +62,7 @@ def browse_by_protype(request):
     return JsonResponse({"status": True,
                          "products": a})
 
+
 #查找
 def search(request):
     keyword = request.POST.get("key_word")
