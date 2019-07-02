@@ -37,7 +37,7 @@ class Products(models.Model):
     pro_id = models.AutoField(primary_key=True)
     pro_name = models.CharField(max_length=45)
     pro_type = models.CharField(max_length=45)
-    pro_price = models.DecimalField(max_digits=5, decimal_places=1)
+    pro_price = models.FloatField()
     pro_origin = models.CharField(max_length=45)
     pro_des = models.CharField(max_length=45)
     pro_img = models.CharField(max_length=45, blank=True, null=True)
@@ -55,7 +55,7 @@ class Purchase(models.Model):
     pur_product = models.ForeignKey(Products, models.DO_NOTHING, db_column='pur_product')
     pur_quantity = models.CharField(max_length=45)
     pur_date = models.CharField(max_length=45)
-    pur_price = models.DecimalField(max_digits=5, decimal_places=1)
+    pur_price = models.FloatField()
 
     class Meta:
         managed = False

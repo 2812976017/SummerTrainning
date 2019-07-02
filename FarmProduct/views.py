@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import json
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import models
@@ -45,35 +46,22 @@ def login(request):
 #按产品类别浏览表
 def browse_by_protype(request):
     protype = request.POST.get("pro_type")
+    print(protype)
     proset = models.Products.objects.filter(pro_type=protype).filter(pro_state=1)
-    x = proset.count()-1
-    a = []
+    x = proset.count()
+    a = [0]*x
     for i in range(0, x):
-        a[i] = {"pro_name": proset[i].pro_name,
-                "pro_id": proset[i].pro_id,
-                "pro_price": proset[i].pro_id,
-                "pro_image": proset[i].pro_img}
-    return JsonResponse({"products": a})
+        temp = [0, 1, 2, 3, 4, 5]
+        temp[0] = proset[i].pro_id
+        temp[1] = proset[i].pro_name
+        temp[2] = proset[i].pro_price
+        temp[3] = proset[i].pro_origin
+        temp[4] = proset[i].pro_store.user_name
+        temp[5] = proset[i].pro_img
+        a[i] = temp
+    return JsonResponse({"status": True,
+                         "products": a})
 
-#查看产品
-def check_product(request):
-    proid = request.POST.get("pro_id")
-    pro = models.Products.objects.filter(pro_id=proid)
-    return JsonResponse({"pro_name": pro.pro_name,
-                         "pro_price": pro.pro_price,
-                         "pro_des": pro.pro_des,
-                         "pro_store": pro.pro_store,
-                         "pro_img": pro.pro_img})
-
-#购买
-def purchase(request):
-    purproduct  = request.POST.get("pur_product")
-    purquantity = request.POST.get("pur_quantity")
-    purdate     = request.POST.get("pur_date")
-    pursumer = request.POST.get("pur_consumer")
-    purprice    = request.POST.get("pur_price")
-    models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=pursumer, pur_price=purprice)
-    return JsonResponse({"status": "purchase success"})
 
 #查找
 def search(request):
@@ -84,14 +72,41 @@ def search(request):
         return JsonResponse({"status": False,
                              "message": "nothing found"})
     else:
-        x -= 1
-        a = []
+        a = [0]*x
         for i in range(0, x):
-            a[i] = {"pro_name": proset[i].pro_name,
-                    "pro_id": proset[i].pro_id,
-                    "pro_price": proset[i].pro_id,
-                    "pro_image": proset[i].pro_img}
-        return JsonResponse({"products": a})
+            temp = [0, 1, 2, 3, 4, 5]
+            temp[0] = proset[i].pro_id
+            temp[1] = proset[i].pro_name
+            temp[2] = proset[i].pro_price
+            temp[3] = proset[i].pro_origin
+            temp[4] = proset[i].pro_store.user_name
+            temp[5] = proset[i].pro_img
+            a[i] = temp
+        return JsonResponse({"status": True,
+                             "products": a})
+
+#查看产品
+def check_product(request):
+    proid = request.POST.get("pro_id")
+    pro = models.Products.objects.filter(pro_id=proid)
+    return JsonResponse({"status": True,
+                         "pro_name": pro.pro_name,
+                         "pro_price": pro.pro_price,
+                         "pro_des": pro.pro_des,
+                         "pro_store": pro.pro_store,
+                         "pro_img": pro.pro_img})
+
+#购买
+def purchase(request):
+    purproduct  = request.POST.get("pro_id")
+    #+name
+    purquantity = request.POST.get("pur_quantity")
+    #purdate     = request.POST.get("pur_date")
+    pursumer = request.POST.get("user_name")
+    purprice    = request.POST.get("pro_price")
+    models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=pursumer, pur_price=purprice)
+    return JsonResponse({"status": "purchase success"})
+
 
 #商户上架产品
 def new_arrival(request):
@@ -111,7 +126,7 @@ def new_arrival(request):
 def off_shelf(request):
     userid = request.POST.get("user_id")
     pname = request.POST.get("pro_name")
-    models.Products.objects.filter(pro_name=pname).filter(pro_store=pname).update(pro_state=0)
+    models.Products.objects.filter(pro_name=pname).filter(pro_store=userid).update(pro_state=0)
     return JsonResponse({"status": True,
                          "message": "product is off shelf"})
 
@@ -119,13 +134,16 @@ def off_shelf(request):
 def browse_by_prostore(request):
     userid = request.POST.get("user_id")
     proset = models.Products.objects.filter(pro_store=userid)
-    x = proset.count()-1
-    a = []
+    x = proset.count()
+    a = [0]*x
     for i in range(0, x):
-        a[i] = {"pro_name": proset[i].pro_name,
-                "pro_id": proset[i].pro_id,
-                "pro_price": proset[i].pro_id,
-                "pro_image": proset[i].pro_img}
+        temp = [0, 1, 2, 3, 4]
+        temp[0] = proset[i].pro_id
+        temp[1] = proset[i].pro_name
+        temp[2] = proset[i].pro_price
+        temp[3] = proset[i].pro_origin
+        temp[4] = proset[i].pro_img
+        a[i] = temp
     return JsonResponse({"products": a})
 
 
