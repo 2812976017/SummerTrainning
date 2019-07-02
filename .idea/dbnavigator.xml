@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="5f30f45c-c90e-4626-b384-474d212eb157">
-        <schema name="product" object-types="procedure, function, view, table, index, column, constraint, dataset trigger" />
+        <schema name="product" object-types="view, column, function, dataset trigger, constraint, procedure, index, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -41,6 +41,9 @@
     <connection id="5f30f45c-c90e-4626-b384-474d212eb157" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.yield" active-filter-id="EMPTY_FILTER">
+      <filter id="7ba6b2b8-1b8c-4abf-817a-4661ca5207f6" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
     <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.gdp" active-filter-id="bc7b0831-19e0-4d78-8638-3eb67273ee4d">
       <filter id="bc7b0831-19e0-4d78-8638-3eb67273ee4d" name="1 &amp; 1 &amp; 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="gdp_id" operator="=" value="1" active="true" />
@@ -48,7 +51,17 @@
         <condition column="gdp_mount" operator="=" value="1" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.user" active-filter-id="" />
+    <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.user" active-filter-id="18cfefdc-c3dc-4cac-bd61-a8261e37d537">
+      <filter id="18cfefdc-c3dc-4cac-bd61-a8261e37d537" name="123 &amp; 山东 &amp; 123 &amp; 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="user_name" operator="=" value="123" active="true" />
+        <condition column="user_address" operator="=" value="山东" active="true" />
+        <condition column="user_pwd" operator="=" value="123" active="true" />
+        <condition column="user_type" operator="=" value="1" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="5f30f45c-c90e-4626-b384-474d212eb157" dataset="product.action" active-filter-id="29e04657-ea6a-4214-a53e-d687d82ed87f">
+      <filter id="29e04657-ea6a-4214-a53e-d687d82ed87f" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

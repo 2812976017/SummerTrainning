@@ -10,6 +10,10 @@ from . import models
 def test(request):
     return HttpResponse("OK!")
 
+def yield1(request):
+    yield1 = models.Yield.objects.get(yie_id=1).yie_yield
+    return JsonResponse({"yield1": yield1})
+
 #注册
 def register(request):
     username    = request.POST.get("user_name")
@@ -117,7 +121,7 @@ def browse_by_prostore(request):
     proset = models.Products.objects.filter(pro_store=userid)
     x = proset.count()-1
     a = []
-    for i in range(0,x):
+    for i in range(0, x):
         a[i] = {"pro_name": proset[i].pro_name,
                 "pro_id": proset[i].pro_id,
                 "pro_price": proset[i].pro_id,

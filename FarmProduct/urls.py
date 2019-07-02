@@ -12,7 +12,7 @@ urlpatterns = [
     re_path(r'^new_arrival/*$',                 views.new_arrival,                  name='new_arrival'),
     re_path(r'^off_shelf/*$',                  views.off_shelf,                   name='off_shelf'),
     re_path(r'^browse_by_prostore/*$',          views.browse_by_prostore,           name='browse_by_prostore'),
-
+    re_path(r'^yield1/*$',                       views.yield1,                        name='yield1'),
     re_path(r'^test/*$',                        views.test,                         name='test'),
 
 
