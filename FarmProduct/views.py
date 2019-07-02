@@ -134,6 +134,7 @@ def browse_by_prostore(request):
 
 
 
+
 # #2017-2019生产总值
 # def total(request):
 #     total = models.Gdp.objects.get(gdp_id=1).gdp_mount
