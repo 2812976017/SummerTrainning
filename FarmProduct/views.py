@@ -46,23 +46,50 @@ def login(request):
 #按产品类别浏览表
 def browse_by_protype(request):
     protype = request.POST.get("pro_type")
+    print(protype)
     proset = models.Products.objects.filter(pro_type=protype).filter(pro_state=1)
     x = proset.count()
     a = [0]*x
     for i in range(0, x):
-        temp = [0, 1, 2, 3]
-        temp[0] = proset[i].pro_name
-        temp[1] = proset[i].pro_id
+        temp = [0, 1, 2, 3, 4, 5]
+        temp[0] = proset[i].pro_id
+        temp[1] = proset[i].pro_name
         temp[2] = proset[i].pro_price
-        temp[3] = proset[i].pro_img
+        temp[3] = proset[i].pro_origin
+        temp[4] = proset[i].pro_store.user_name
+        temp[5] = proset[i].pro_img
         a[i] = temp
-    return JsonResponse({"products": a})
+    return JsonResponse({"status": True,
+                         "products": a})
+
+#查找
+def search(request):
+    keyword = request.POST.get("key_word")
+    proset = models.Products.objects.filter(pro_name__contains=keyword).filter(pro_state=1)
+    x = proset.count()
+    if x == 0:
+        return JsonResponse({"status": False,
+                             "message": "nothing found"})
+    else:
+        a = [0]*x
+        for i in range(0, x):
+            temp = [0, 1, 2, 3, 4, 5]
+            temp[0] = proset[i].pro_id
+            temp[1] = proset[i].pro_name
+            temp[2] = proset[i].pro_price
+            temp[3] = proset[i].pro_origin
+            temp[4] = proset[i].pro_store.user_name
+            temp[5] = proset[i].pro_img
+            a[i] = temp
+        return JsonResponse({"status": True,
+                             "products": a})
 
 #查看产品
 def check_product(request):
     proid = request.POST.get("pro_id")
     pro = models.Products.objects.filter(pro_id=proid)
-    return JsonResponse({"pro_name": pro.pro_name,
+    return JsonResponse({"status": True,
+                         "pro_name": pro.pro_name,
                          "pro_price": pro.pro_price,
                          "pro_des": pro.pro_des,
                          "pro_store": pro.pro_store,
@@ -78,25 +105,6 @@ def purchase(request):
     models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=pursumer, pur_price=purprice)
     return JsonResponse({"status": "purchase success"})
 
-#查找
-def search(request):
-    keyword = request.POST.get("key_word")
-    proset = models.Products.objects.filter(pro_name__contains=keyword).filter(pro_state=1)
-    x = proset.count()
-    if x == 0:
-        return JsonResponse({"status": False,
-                             "message": "nothing found"})
-    else:
-        a = [0]*x
-        for i in range(0, x):
-            temp = [0, 1, 2, 3]
-            temp[0] = proset[i].pro_name
-            temp[1] = proset[i].pro_id
-            temp[2] = proset[i].pro_price
-            temp[3] = proset[i].pro_img
-            a[i] = temp
-        return JsonResponse({"status": True,
-                             "products": a})
 
 #商户上架产品
 def new_arrival(request):
@@ -127,11 +135,12 @@ def browse_by_prostore(request):
     x = proset.count()
     a = [0]*x
     for i in range(0, x):
-        temp = [0, 1, 2, 3]
-        temp[0] = proset[i].pro_name
-        temp[1] = proset[i].pro_id
+        temp = [0, 1, 2, 3, 4]
+        temp[0] = proset[i].pro_id
+        temp[1] = proset[i].pro_name
         temp[2] = proset[i].pro_price
-        temp[3] = proset[i].pro_img
+        temp[3] = proset[i].pro_origin
+        temp[4] = proset[i].pro_img
         a[i] = temp
     return JsonResponse({"products": a})
 
