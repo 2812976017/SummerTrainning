@@ -97,11 +97,12 @@ def check_product(request):
 
 #购买
 def purchase(request):
-    purproduct  = request.POST.get("pur_product")
+    purproduct  = request.POST.get("pro_id")
+    #+name
     purquantity = request.POST.get("pur_quantity")
-    purdate     = request.POST.get("pur_date")
-    pursumer = request.POST.get("pur_consumer")
-    purprice    = request.POST.get("pur_price")
+    #purdate     = request.POST.get("pur_date")
+    pursumer = request.POST.get("user_name")
+    purprice    = request.POST.get("pro_price")
     models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=pursumer, pur_price=purprice)
     return JsonResponse({"status": "purchase success"})
 
