@@ -47,13 +47,15 @@ def login(request):
 def browse_by_protype(request):
     protype = request.POST.get("pro_type")
     proset = models.Products.objects.filter(pro_type=protype).filter(pro_state=1)
-    x = proset.count()-1
-    a = []
+    x = proset.count()
+    a = [0]*x
     for i in range(0, x):
-        a[i] = {"pro_name": proset[i].pro_name,
-                "pro_id": proset[i].pro_id,
-                "pro_price": proset[i].pro_id,
-                "pro_image": proset[i].pro_img}
+        temp = [0, 1, 2, 3]
+        temp[0] = proset[i].pro_name
+        temp[1] = proset[i].pro_id
+        temp[2] = proset[i].pro_price
+        temp[3] = proset[i].pro_img
+        a[i] = temp
     return JsonResponse({"products": a})
 
 #查看产品
@@ -79,31 +81,20 @@ def purchase(request):
 #查找
 def search(request):
     keyword = request.POST.get("key_word")
-    print(keyword)
     proset = models.Products.objects.filter(pro_name__contains=keyword).filter(pro_state=1)
-    print(proset[0].pro_name)
-    print(proset)
     x = proset.count()
-    print(x)
     if x == 0:
         return JsonResponse({"status": False,
                              "message": "nothing found"})
     else:
         a = [0]*x
-        print(len(a))
         for i in range(0, x):
             temp = [0, 1, 2, 3]
-            print(i)
             temp[0] = proset[i].pro_name
-            print(temp[0])
             temp[1] = proset[i].pro_id
-            print(temp[1])
             temp[2] = proset[i].pro_price
-            print(temp[2])
             temp[3] = proset[i].pro_img
-            a[i]=temp
-            print(a[i])
-        print(a)
+            a[i] = temp
         return JsonResponse({"status": True,
                              "products": a})
 
@@ -133,13 +124,15 @@ def off_shelf(request):
 def browse_by_prostore(request):
     userid = request.POST.get("user_id")
     proset = models.Products.objects.filter(pro_store=userid)
-    x = proset.count()-1
-    a = []
+    x = proset.count()
+    a = [0]*x
     for i in range(0, x):
-        a[i] = {"pro_name": proset[i].pro_name,
-                "pro_id": proset[i].pro_id,
-                "pro_price": proset[i].pro_id,
-                "pro_image": proset[i].pro_img}
+        temp = [0, 1, 2, 3]
+        temp[0] = proset[i].pro_name
+        temp[1] = proset[i].pro_id
+        temp[2] = proset[i].pro_price
+        temp[3] = proset[i].pro_img
+        a[i] = temp
     return JsonResponse({"products": a})
 
 
