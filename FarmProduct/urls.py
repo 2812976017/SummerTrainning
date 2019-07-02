@@ -10,7 +10,7 @@ urlpatterns = [
     re_path(r'^purchase/*$',                    views.purchase,                     name='purchase'),
     re_path(r'^search/*$',                      views.search,                       name='search'),
     re_path(r'^new_arrival/*$',                 views.new_arrival,                  name='new_arrival'),
-    re_path(r'^off_shelve/*$',                  views.off_shelve,                   name='off_shelve'),
+    re_path(r'^off_shelf/*$',                  views.off_shelf,                   name='off_shelf'),
     re_path(r'^browse_by_prostore/*$',          views.browse_by_prostore,           name='browse_by_prostore'),
 
     re_path(r'^test/*$',                        views.test,                         name='test'),

@@ -98,13 +98,18 @@ def new_arrival(request):
     pprice = request.POST.get("pro_price")
     porigin = request.POST.get("pro_origin")
     userid = request.POST.get("user_id")
+    models.Products.objects.create(pro_name=pname, pro_type=ptype, pro_price=pprice,
+                                   pro_origin=porigin, pro_des=pdes, pro_img=pimg, pro_store=userid, pro_state=1)
+    return JsonResponse({"status": True,
+                         "message": "newly arrivals"})
 
 #商户下架商品
-def off_shelve(request):
+def off_shelf(request):
     userid = request.POST.get("user_id")
     pname = request.POST.get("pro_name")
     models.Products.objects.filter(pro_name=pname).filter(pro_store=pname).update(pro_state=0)
-    return JsonResponse({"status": True})
+    return JsonResponse({"status": True,
+                         "message": "product is off shelf"})
 
 #按商户浏览
 def browse_by_prostore(request):
@@ -125,92 +130,92 @@ def browse_by_prostore(request):
 
 
 
-#2017-2019生产总值
-def total(request):
-    total = models.Gdp.objects.get(gdp_id=1).gdp_mount
-    return JsonResponse({"total": total})
-
-#2017-2019每月总产量
-def per_month():
-    x = models.Gdp.objests.all().count()-1
-    a = []
-    for i in range(0, x):
-        a[i] = {models.Gdp.objects.get(gdp_id=(i+2)).gdp_date: models.Gdp.objects.get(gdp_id=(i+2)).gdp_mount}
-    return JsonResponse({"per_month": a})
-
-#每个省2017-2019总产量
-def total_per_province():
-    x = 10
-    a = []
-    for i in range(0, x):
-        a[i] = {"province": 0}
-    return JsonResponse({"total_per_province": a})
-
-#2017/2018各类别农产品生产总值
-def total_per_product__per_year():
-    x = 10
-    a = [], b = []
-    for i in range(0, x):
-        a[i] = {"2017_type_of_farm_goods": 0}
-    for i in range(0, x):
-        b[i] = {"2018_type_of_farm_goods": 0}
-    return JsonResponse({"2017": a,
-                         "2018": b})
-
-#天气
-def weather(request):
-    temperature  = 0
-    weather_type = 0
-    return JsonResponse({"temperature": temperature,
-                         "weather_type": weather_type})
-
-#各地区消费能力
-def consume_ability():
-    value = 0
-    return JsonResponse({"consume_ability": value})
-
-#每类产品销售总额
-def sale_sum_per_product():
-    x = 10
-    a = []
-    for i in range(0, x):
-        a[i] = {"type_of_the_farm_goods": 0}
-    return JsonResponse({"sale_sum_per_product": a})
-
-#按时间消费额
-def sale_sum_per_day(request):
-    x = 10
-    a = []
-    for i in range(0, x):
-        a[i] = {"day": 0}
-    return JsonResponse({"sale_sum_per_day": a})
-
-def sale_sum_per_month(request):
-    x = 10
-    a = []
-    for i in range(0, x):
-        a[i] = {"month": 0}
-    return JsonResponse({"sale_sum_per_month": a})
-
-
-'''后续迭代'''
-
-
-#价格预测
-def pricepredict(request):
-    province = request.POST.get("province")
-    name     = request.POST.get("name")
-    past_price   = 0
-    future_price = 0
-    return JsonResponse({"past_price": past_price,
-                         "future_price": future_price})
-
-#产量预测
-def productpredict(request):
-    province = request.POST.get("province")
-    name     = request.POST.get("name")
-    product = 0
-    return JsonResponse({"product": product})
+# #2017-2019生产总值
+# def total(request):
+#     total = models.Gdp.objects.get(gdp_id=1).gdp_mount
+#     return JsonResponse({"total": total})
+#
+# #2017-2019每月总产量
+# def per_month():
+#     x = models.Gdp.objests.all().count()-1
+#     a = []
+#     for i in range(0, x):
+#         a[i] = {models.Gdp.objects.get(gdp_id=(i+2)).gdp_date: models.Gdp.objects.get(gdp_id=(i+2)).gdp_mount}
+#     return JsonResponse({"per_month": a})
+#
+# #每个省2017-2019总产量
+# def total_per_province():
+#     x = 10
+#     a = []
+#     for i in range(0, x):
+#         a[i] = {"province": 0}
+#     return JsonResponse({"total_per_province": a})
+#
+# #2017/2018各类别农产品生产总值
+# def total_per_product__per_year():
+#     x = 10
+#     a = [], b = []
+#     for i in range(0, x):
+#         a[i] = {"2017_type_of_farm_goods": 0}
+#     for i in range(0, x):
+#         b[i] = {"2018_type_of_farm_goods": 0}
+#     return JsonResponse({"2017": a,
+#                          "2018": b})
+#
+# #天气
+# def weather(request):
+#     temperature  = 0
+#     weather_type = 0
+#     return JsonResponse({"temperature": temperature,
+#                          "weather_type": weather_type})
+#
+# #各地区消费能力
+# def consume_ability():
+#     value = 0
+#     return JsonResponse({"consume_ability": value})
+#
+# #每类产品销售总额
+# def sale_sum_per_product():
+#     x = 10
+#     a = []
+#     for i in range(0, x):
+#         a[i] = {"type_of_the_farm_goods": 0}
+#     return JsonResponse({"sale_sum_per_product": a})
+#
+# #按时间消费额
+# def sale_sum_per_day(request):
+#     x = 10
+#     a = []
+#     for i in range(0, x):
+#         a[i] = {"day": 0}
+#     return JsonResponse({"sale_sum_per_day": a})
+#
+# def sale_sum_per_month(request):
+#     x = 10
+#     a = []
+#     for i in range(0, x):
+#         a[i] = {"month": 0}
+#     return JsonResponse({"sale_sum_per_month": a})
+#
+#
+# '''后续迭代'''
+#
+#
+# #价格预测
+# def pricepredict(request):
+#     province = request.POST.get("province")
+#     name     = request.POST.get("name")
+#     past_price   = 0
+#     future_price = 0
+#     return JsonResponse({"past_price": past_price,
+#                          "future_price": future_price})
+#
+# #产量预测
+# def productpredict(request):
+#     province = request.POST.get("province")
+#     name     = request.POST.get("name")
+#     product = 0
+#     return JsonResponse({"product": product})
 
 
 
