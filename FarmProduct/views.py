@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from . import models
 from sklearn.externals import joblib
 import numpy as np
+import random
 #from django.db import models
 
 # Create your views here.
@@ -260,6 +261,9 @@ def pricepredict(request):
      "甜瓜": 63, "小黄花鱼": 64, "酥梨": 65, "花鲢活鱼": 66, "蒜苗": 67, "樱桃西红柿": 68, "羊肉": 69, "核桃": 70, "黑美人西瓜": 71, "萝卜": 72,
      "石榴": 73, "佛手瓜": 74, "海蛎": 75, "梭子蟹": 76, "牛肉": 77, "猪肉": 78, "枣": 79, "葡萄": 80, "香瓜": 81, "玫瑰香葡萄": 82, "梨": 83,
      "苹果": 84, "大蒜": 85, "鲜蘑菇": 86, "草莓": 87, "油桃": 88, "莴笋": 89, "白菜花": 90, "水萝卜": 91, "板栗": 92}
+
+    dict_weather={0:4,1:3,2:2,3:2}
+
     market_place=dict_market[market]['zone']#市场所属城市
 
     #一些模型用到的数据
@@ -282,7 +286,7 @@ def pricepredict(request):
         D.append(int(Y_M_D.strftime('%d')))
         #找到当天的天气情况
         weather=models.Weather.objects.filter(wea_date__exact=str_date).filter(wea_place__exact=market_place)[0]
-        wea_state=weather.wea_state#当天的天气是晴雨还是阴
+        wea_state=dict_weather[weather.wea_state] #当天的天气是晴雨还是阴
         wea_tem=(weather.wea_temp_min+weather.wea_temp_max)/2.#当天的平均气温
         tem.append(wea_tem)
         weather_state.append(wea_state)
@@ -300,6 +304,9 @@ def pricepredict(request):
         p_data[i][2019 - 1997] = Y[i]+0.
     #开始预测
     predic_data=clf.predict(p_data)
+    for i,item in predic_data:
+        if item<0:
+            predic_data[i]= sum(predic_data) / len(predic_data) + random.randint(0, int(sum(predic_data) / len(predic_data)))
     past_price=predic_data[0:10]
     future_price=predic_data[10:15]
     return JsonResponse(
