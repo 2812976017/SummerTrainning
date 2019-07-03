@@ -20,6 +20,7 @@ class Action(models.Model):
         db_table = 'action'
 
 
+
 class Price(models.Model):
     pri_id = models.AutoField(primary_key=True)
     pri_place = models.CharField(max_length=45)
