@@ -54,8 +54,9 @@ class Purchase(models.Model):
     pur_consumer = models.ForeignKey('User', models.DO_NOTHING, db_column='pur_consumer')
     pur_product = models.ForeignKey(Products, models.DO_NOTHING, db_column='pur_product')
     pur_quantity = models.CharField(max_length=45)
-    pur_date = models.CharField(max_length=45)
+    pur_date = models.DateTimeField()
     pur_price = models.FloatField()
+    pur_pname = models.CharField(max_length=45)
 
     class Meta:
         managed = False
