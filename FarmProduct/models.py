@@ -75,27 +75,26 @@ class User(models.Model):
 
 
 class Weather(models.Model):
-    wea_id = models.AutoField(primary_key=True)
+    wea_date = models.CharField(primary_key=True, max_length=45)
+    wea_state = models.IntegerField()
     wea_temp_max = models.IntegerField()
     wea_temp_min = models.IntegerField()
-    wea_state = models.IntegerField()
     wea_place = models.CharField(max_length=45)
-    wea_date = models.CharField(max_length=45)
 
     class Meta:
         managed = False
         db_table = 'weather'
+        unique_together = (('wea_date', 'wea_place'),)
 
 
 class Yield(models.Model):
-    yie_id = models.AutoField(primary_key=True)
-    yie_date = models.CharField(max_length=45)
+    yie_date = models.CharField(primary_key=True, max_length=45)
     yie_place = models.CharField(max_length=45)
     yie_wheat = models.CharField(max_length=45)
     yie_maize = models.CharField(max_length=45)
     yie_cotton = models.CharField(max_length=45)
 
-
     class Meta:
         managed = False
         db_table = 'yield'
+        unique_together = (('yie_date', 'yie_place'),)
