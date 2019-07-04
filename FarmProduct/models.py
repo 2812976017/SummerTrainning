@@ -20,7 +20,6 @@ class Action(models.Model):
         db_table = 'action'
 
 
-
 class Price(models.Model):
     pri_id = models.AutoField(primary_key=True)
     pri_place = models.CharField(max_length=45)
@@ -90,10 +89,11 @@ class Weather(models.Model):
 
 class Yield(models.Model):
     yie_id = models.AutoField(primary_key=True)
-    yie_place = models.CharField(max_length=45)
-    yie_kind = models.CharField(max_length=45)
-    yie_yield = models.CharField(max_length=45)
     yie_date = models.CharField(max_length=45)
+    yie_place = models.CharField(max_length=45)
+    yie_wheat = models.CharField(max_length=45)
+    yie_maize = models.CharField(max_length=45)
+    yie_cotton = models.CharField(max_length=45)
 
     class Meta:
         managed = False
