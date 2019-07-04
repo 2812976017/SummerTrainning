@@ -95,6 +95,7 @@ class Yield(models.Model):
     yie_maize = models.CharField(max_length=45)
     yie_cotton = models.CharField(max_length=45)
 
+
     class Meta:
         managed = False
         db_table = 'yield'
