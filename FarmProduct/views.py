@@ -15,7 +15,7 @@ def test(request):
     return HttpResponse("OK!")
 
 def yield1(request):
-    yield1 = models.Yield.objects.get(yie_id=1).yie_yield
+    yield1 = models.Yield.objects.get(yie_date=2017, yie_place='潍 坊 市').yie_maize
     return JsonResponse({"yield1": yield1})
 
 #注册
@@ -48,19 +48,22 @@ def login(request):
 
 #按产品类别浏览表
 def browse_by_protype(request):
+    print(request)
     protype = request.POST.get("pro_type")
     print(protype)
     proset = models.Products.objects.filter(pro_type=protype).filter(pro_state=1)
     x = proset.count()
+    print(x)
     a = [0]*x
     for i in range(0, x):
-        temp = [0, 1, 2, 3, 4, 5]
+        temp = [0, 1, 2, 3, 4, 5, 6]
         temp[0] = proset[i].pro_id
         temp[1] = proset[i].pro_name
         temp[2] = proset[i].pro_price
         temp[3] = proset[i].pro_origin
-        temp[4] = proset[i].pro_store.user_name
-        temp[5] = proset[i].pro_img
+        temp[4] = proset[i].pro_des
+        temp[5] = proset[i].pro_store.user_name
+        temp[6] = proset[i].pro_img
         a[i] = temp
     return JsonResponse({"status": True,
                          "products": a})
@@ -69,6 +72,7 @@ def browse_by_protype(request):
 #查找
 def search(request):
     keyword = request.POST.get("key_word")
+    print(request)
     proset = models.Products.objects.filter(pro_name__contains=keyword).filter(pro_state=1)
     x = proset.count()
     if x == 0:
@@ -77,13 +81,14 @@ def search(request):
     else:
         a = [0]*x
         for i in range(0, x):
-            temp = [0, 1, 2, 3, 4, 5]
+            temp = [0, 1, 2, 3, 4, 5., 6]
             temp[0] = proset[i].pro_id
             temp[1] = proset[i].pro_name
             temp[2] = proset[i].pro_price
             temp[3] = proset[i].pro_origin
-            temp[4] = proset[i].pro_store.user_name
-            temp[5] = proset[i].pro_img
+            temp[4] = proset[i].pro_des
+            temp[5] = proset[i].pro_store.user_name
+            temp[6] = proset[i].pro_img
             a[i] = temp
         return JsonResponse({"status": True,
                              "products": a})
@@ -104,7 +109,7 @@ def purchase(request):
     purproduct  = request.POST.get("pro_id")
     #+name
     purquantity = request.POST.get("pur_quantity")
-    purdate     = request.POST.get("pur_date")
+    #purdate     = request.POST.get("pur_date")
     pursumer = request.POST.get("user_name")
     purprice    = request.POST.get("pro_price")
     models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=pursumer, pur_price=purprice)
