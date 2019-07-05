@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+from django.db import models
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import models
@@ -48,12 +49,9 @@ def login(request):
 
 #按产品类别浏览表
 def browse_by_protype(request):
-    print(request)
     protype = request.POST.get("pro_type")
-    print(protype)
     proset = models.Products.objects.filter(pro_type=protype).filter(pro_state=1)
     x = proset.count()
-    print(x)
     a = [0]*x
     for i in range(0, x):
         temp = [0, 1, 2, 3, 4, 5, 6]
@@ -72,7 +70,6 @@ def browse_by_protype(request):
 #查找
 def search(request):
     keyword = request.POST.get("key_word")
-    print(request)
     proset = models.Products.objects.filter(pro_name__contains=keyword).filter(pro_state=1)
     x = proset.count()
     if x == 0:
@@ -107,12 +104,12 @@ def check_product(request):
 #购买
 def purchase(request):
     purproduct  = request.POST.get("pro_id")
-    #+name
     purquantity = request.POST.get("pur_quantity")
-    #purdate     = request.POST.get("pur_date")
-    pursumer = request.POST.get("user_name")
+    purname     = request.POST.get("pro_name")
+    pursumer    = request.POST.get("user_name")
     purprice    = request.POST.get("pro_price")
-    models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_date=purdate, pur_consumer=pursumer, pur_price=purprice)
+    models.Purchase.objects.create(pur_product=purproduct, pur_quantity=purquantity, pur_pname=purname,
+                                   pur_consumer=pursumer, pur_date=models.DateTimeField(auto_now_add=True),  pur_price=purprice)
     return JsonResponse({"status": "purchase success"})
 
 
@@ -232,7 +229,7 @@ def browse_by_prostore(request):
 # '''后续迭代'''
 #
 #
-#价格预测
+价格预测
 import datetime
 
 def pricepredict(request):
